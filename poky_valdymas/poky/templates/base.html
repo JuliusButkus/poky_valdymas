@@ -27,7 +27,7 @@
                 {% comment %} <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a> {% endcomment %}
                 <li class="spacer center"></li>
                 <li>"my projects"|title</li>
-                {% comment %} {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                     <li>
                         {% if user.profile.photo %}
                             <a href="{% url "profile" %}"><img class="nav-profile-photo" src="{{ user.profile.photo.url }}" alt="User Profile Picture"></a>
@@ -43,19 +43,7 @@
                     <li> "Welcome" </li>
                     <li><a href="{% url "login" %}">"Login" </a></li>
                     <li><a href="{% url "signup" %}"> "Sign Up"</a></li>
-                {% endif %}
-                <li>
-                    <form class="inline-form" action="{% url "set_language" %}" method="POST">
-                        {% csrf_token %}
-                        <select name="language" onchange="this.form.submit();">
-                            {% for language in LANGUAGES %}
-                                <option value="{{ language.0 }}"
-                                {% if language.0 == LANGUAGE_CODE %} selected {% endif %}
-                                >{{ language.1 }}</option>
-                            {% endfor %}
-                        </select>
-                    </form>
-                </li>   {% endcomment %}
+                {% endif %}   
             </ul>
         </ul>
     </header>
